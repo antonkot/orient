@@ -4,13 +4,27 @@ window.addEventListener("deviceorientation", handleOrientation, true);
 
 const CAM_DIST = 5;
 
+function degToRad(deg) {
+    return deg * (Math.PI / 180);
+}
+
 function handleOrientation(event) {
-    const x = (event.beta + 90) * (Math.PI / 180);
-    const y = event.gamma * (Math.PI / 180);
-    
-    const pos = new THREE.Vector3().setFromSphericalCoords(CAM_DIST, x, y).negate();
-    camera.position.copy(pos);
-    camera.lookAt(new THREE.Vector3());
+    const alpha = degToRad(event.alpha);  // Rotation around the z-axis
+    const beta = degToRad(event.beta);    // Rotation around the x-axis
+    const gamma = degToRad(event.gamma);  // Rotation around the y-axis
+
+    // Adjust the beta to act as a polar angle (from -90 to 90 degrees)
+    const polarAngle = Math.PI - beta //+ Math.PI / 2;  // Add π/2 to move beta from -90 to 90 to range 0 to π
+    const azimuthalAngle = alpha;           // Alpha as azimuthal angle
+
+    // Convert spherical coordinates (r, polarAngle, azimuthalAngle) to Cartesian coordinates
+    const x = CAM_DIST * Math.sin(polarAngle) * Math.cos(azimuthalAngle);
+    const y = CAM_DIST * Math.cos(polarAngle);  // Up and down (height)
+    const z = CAM_DIST * Math.sin(polarAngle) * Math.sin(azimuthalAngle);
+
+    // Update the camera's position
+    camera.position.set(x, y, z);
+    camera.lookAt(scene.position);
 }
 
 const scene = new THREE.Scene();
