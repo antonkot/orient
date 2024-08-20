@@ -15,7 +15,7 @@ function handleOrientation(event) {
 
     // Adjust the beta to act as a polar angle (from -90 to 90 degrees)
     const polarAngle = Math.PI - beta //+ Math.PI / 2;  // Add π/2 to move beta from -90 to 90 to range 0 to π
-    const azimuthalAngle = alpha;           // Alpha as azimuthal angle
+    const azimuthalAngle = gamma;           // Alpha as azimuthal angle
 
     // Convert spherical coordinates (r, polarAngle, azimuthalAngle) to Cartesian coordinates
     const x = CAM_DIST * Math.sin(polarAngle) * Math.cos(azimuthalAngle);
