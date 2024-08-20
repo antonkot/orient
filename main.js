@@ -6,7 +6,7 @@ const CAM_DIST = 5;
 
 function handleOrientation(event) {
     const x = event.beta * (Math.PI / 180);
-    const y = (360 - event.alpha) * (Math.PI / 180);
+    const y = event.gamma * (Math.PI / 180);
     
     const pos = new THREE.Vector3().setFromSphericalCoords(CAM_DIST, x, y).negate();
     camera.position.copy(pos);
