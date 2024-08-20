@@ -8,8 +8,14 @@ function degToRad(deg) {
     return deg * (Math.PI / 180);
 }
 
+const debug = document.getElementById('debug');
+
 function handleOrientation(event) {
-    
+    debug.innerText = JSON.stringify({
+        alpha: event.alpha,
+        beta: event.beta,
+        gamma: event.gamma,
+    }, null, 2)
     const alpha = degToRad(event.alpha);  // Rotation around the z-axis
     const beta = degToRad(event.beta);    // Rotation around the x-axis
     const gamma = degToRad(event.gamma);  // Rotation around the y-axis
