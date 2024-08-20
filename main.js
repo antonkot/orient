@@ -21,7 +21,7 @@ function handleOrientation(event) {
     const gamma = degToRad(event.gamma);  // Rotation around the y-axis
 
     // Adjust the beta to act as a polar angle (from -90 to 90 degrees)
-    const polarAngle = Math.PI - beta //+ Math.PI / 2;  // Add π/2 to move beta from -90 to 90 to range 0 to π
+    const polarAngle = Math.PI / 2 //Math.PI - beta //+ Math.PI / 2;  // Add π/2 to move beta from -90 to 90 to range 0 to π
     const azimuthalAngle = alpha - Math.PI;           // Alpha as azimuthal angle
 
     // Convert spherical coordinates (r, polarAngle, azimuthalAngle) to Cartesian coordinates
