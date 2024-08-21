@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-window.addEventListener("devicemotion", handleOrientation, true);
+window.addEventListener("devicemotion", handleOrientation);
 
 const CAM_DIST = 5;
 
