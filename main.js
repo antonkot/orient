@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-window.addEventListener("deviceorientation", handleOrientation, true);
+window.addEventListener("devicemotion", handleOrientation, true);
 
 const CAM_DIST = 5;
 
@@ -15,7 +15,8 @@ function handleOrientation(event) {
         alpha: event.alpha,
         beta: event.beta,
         gamma: event.gamma,
-    }, null, 2)
+    }, null, 2);
+    return;
     const alpha = degToRad(event.alpha);  // Rotation around the z-axis
     const beta = degToRad(event.beta);    // Rotation around the x-axis
     const gamma = degToRad(event.gamma);  // Rotation around the y-axis
@@ -42,7 +43,8 @@ renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
 const geometry = new THREE.BoxGeometry( 1, 1, 1 );
-const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const material = new THREE.MeshNormalMaterial();
+
 for (let i = -5; i < 5; i++) {
     for (let j = -5; j < 5; j++) {
         const cube = new THREE.Mesh( geometry, material );
